@@ -538,12 +538,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f8f02433712d743a396d96c6d26193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YellowPrefabs:
+  applePrefabs:
   - {fileID: 8559147309243180164, guid: 2cebf8f5caa34c84398a72f81eb31ec6, type: 3}
-  RedPrefabs:
-  - {fileID: 1735786982584119953, guid: 54a5d72cc1d47d24e993c62fe5673f07, type: 3}
-  GreenPrefabs:
   - {fileID: 6696035471871738851, guid: 96292fef9192ade4397e83177744f243, type: 3}
+  - {fileID: 1735786982584119953, guid: 54a5d72cc1d47d24e993c62fe5673f07, type: 3}
 --- !u!4 &1661514982
 Transform:
   m_ObjectHideFlags: 0

@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class RedApple : Apple
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Não precisa de Start() ou Update() para a maçã vermelha
+    // A física do Rigidbody2D aplica automaticamente a gravidade e faz ela cair.
 }

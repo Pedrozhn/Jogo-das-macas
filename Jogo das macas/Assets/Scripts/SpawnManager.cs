@@ -4,65 +4,45 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] YellowPrefabs;
-    [SerializeField] GameObject[] RedPrefabs;
-    [SerializeField] GameObject[] GreenPrefabs;
-
+    [SerializeField] GameObject[] applePrefabs;  // Array para armazenar os prefabs das maçãs
     float timer;
-    const float cooldown = 1f;
+    const float cooldown = 1f;  // Tempo entre os spawns
+
+    private void Start()
+    {
+        // Inicia o timer no início
+        timer = cooldown;
+    }
 
     private void Update()
     {
-        Spawn();
-    }
-
-    void Spawn()
-    {
+        // Decrementa o timer a cada quadro
         timer -= Time.deltaTime;
 
+        // Se o timer atingir zero, spawnar uma maçã e resetar o timer
         if (timer <= 0)
         {
-            float appleIndex = Random.Range(0f, 1f);
-            Debug.Log("Apple Index: " + appleIndex);  // Log para verificar o valor de appleIndex
-
-            GameObject appleSelected = null;
-
-            if (appleIndex <= 0.33f)
-            {
-                if (RedPrefabs.Length > 0)
-                {
-                    appleSelected = RedPrefabs[Random.Range(0, RedPrefabs.Length)];
-                }
-            }
-            else if (appleIndex <= 0.66f)
-            {
-                if (GreenPrefabs.Length > 0)
-                {
-                    appleSelected = GreenPrefabs[Random.Range(0, GreenPrefabs.Length)];
-                }
-            }
-            else
-            {
-                if (YellowPrefabs.Length > 0)
-                {
-                    appleSelected = YellowPrefabs[Random.Range(0, YellowPrefabs.Length)];
-                }
-            }
-
-            if (appleSelected != null)
-            {
-                Vector3 spawnPosition = new Vector3(
-                    Random.Range(-GameManager.instance.ScreenBounds.x, GameManager.instance.ScreenBounds.x),
-                    GameManager.instance.ScreenBounds.y - 1f,  // Ajustado para spawn logo abaixo da borda superior
-                    0f
-                );
-
-                Debug.Log("Spawning Apple at: " + spawnPosition);  // Log para verificar a posição de spawn
-
-                Instantiate(appleSelected, spawnPosition, Quaternion.identity);
-            }
-
+            SpawnApple();
             timer = cooldown;
         }
+    }
+
+    void SpawnApple()
+    {
+        // Sorteia um índice entre 0 e o número de prefabs disponíveis (3 maçãs)
+        int appleIndex = Random.Range(0, applePrefabs.Length);
+
+        // Seleciona o prefab baseado no índice sorteado
+        GameObject appleSelected = applePrefabs[appleIndex];
+
+        // Instancia a maçã em uma posição aleatória no topo da tela
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(-GameManager.instance.ScreenBounds.x, GameManager.instance.ScreenBounds.x),
+            GameManager.instance.ScreenBounds.y,
+            0f
+        );
+
+        // Instancia a maçã selecionada
+        Instantiate(appleSelected, spawnPosition, Quaternion.identity);
     }
 }

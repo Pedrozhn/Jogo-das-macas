@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class Apple : MonoBehaviour
 {
-    const int speed = 5;
     [SerializeField] int score;
-    new Rigidbody2D rigidbody2D;
+    protected new Rigidbody2D rigidbody2D;
 
     public int Score { get => score; }
 
-    private void Start()
+    private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.gravityScale = 1f;  // Configura a gravidade padrão para todas as maçãs.
     }
 
-    private void Update()
-    {
-       
-
-        if(transform.position.y < -GameManager.instance.ScreenBounds.y)
-        {
-            Destroy(gameObject);
-        }
-    }
+    // Não há lógica de movimento ou atualização aqui. A física do Rigidbody2D vai cuidar disso.
 }
