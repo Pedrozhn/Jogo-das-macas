@@ -6,7 +6,7 @@ public class Apple : MonoBehaviour
 {
     const int speed = 5;
     [SerializeField] int score;
-    Rigidbody2D rigidbody2D;
+    new Rigidbody2D rigidbody2D;
 
     public int Score { get => score; }
 
@@ -17,7 +17,7 @@ public class Apple : MonoBehaviour
 
     private void Update()
     {
-        rigidbody2D.velocity = Vector2.up * -speed;
+       
 
         if(transform.position.y < -GameManager.instance.ScreenBounds.y)
         {

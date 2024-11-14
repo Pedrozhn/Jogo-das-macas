@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     const float speed = 10;
     float direction;
-    Rigidbody2D rigidbody2D;
+    new Rigidbody2D rigidbody2D;
 
     private void Start()
     {
