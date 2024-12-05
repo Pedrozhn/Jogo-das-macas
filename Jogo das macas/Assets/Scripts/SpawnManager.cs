@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn()
     {
-        timer -= Time.deltaTime;
+        timer -= Time.deltaTime; //
 
         if(timer <= 0)
         {
