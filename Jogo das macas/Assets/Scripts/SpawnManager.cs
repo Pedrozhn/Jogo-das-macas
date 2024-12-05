@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static NewBehaviourScript;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -16,15 +17,15 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn()
     {
-        timer -= Time.deltaTime; //
+        timer -= Time.deltaTime;
 
-        if(timer <= 0)
+        if (timer <= 0)
         {
             float appleIndex = Random.Range(0, 1f);
 
             GameObject appleSelected = null;
 
-            switch(appleIndex)
+            switch (appleIndex)
             {
                 case <= 0.5f:
                     appleSelected = applePrefabs[0];
@@ -37,8 +38,18 @@ public class SpawnManager : MonoBehaviour
                     break;
             }
 
-            Instantiate(appleSelected, new Vector3(Random.Range(-GameManager.instance.ScreenBounds.x, GameManager.instance.ScreenBounds.x), GameManager.instance.ScreenBounds.y), Quaternion.identity);
+            // Instancia o item coletável na tela
+            GameObject newItem = Instantiate(appleSelected, new Vector3(Random.Range(-GameManager.instance.ScreenBounds.x, GameManager.instance.ScreenBounds.x), GameManager.instance.ScreenBounds.y), Quaternion.identity);
+
+            // Certifica-se de que o item gerado tem a interface ICollectable
+            ICollectable collectableItem = newItem.GetComponent<ICollectable>();
+            if (collectableItem != null)
+            {
+                // Lógica adicional, se necessário
+            }
+
             timer = cooldown;
         }
     }
 }
+

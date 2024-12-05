@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static NewBehaviourScript;
 
-public class Apple : MonoBehaviour
+public class Apple : MonoBehaviour, ICollectable
 {
     const int speed = 5;
     [SerializeField] int score;
@@ -19,9 +20,18 @@ public class Apple : MonoBehaviour
     {
         rigidbody2D.velocity = Vector2.up * -speed;
 
-        if(transform.position.y < -GameManager.instance.ScreenBounds.y)
+        if (transform.position.y < -GameManager.instance.ScreenBounds.y)
         {
             Destroy(gameObject);
         }
     }
+
+    // Implementação do método Collect da interface ICollectable
+    public void Collect()
+    {
+        // Quando a maçã é coletada, o método é chamado e a pontuação é atualizada
+        GameManager.instance.AddScore(score);
+        Destroy(gameObject);  // Destruir a maçã após ser coletada
+    }
 }
+

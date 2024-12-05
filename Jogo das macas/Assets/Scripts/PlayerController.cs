@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static NewBehaviourScript;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,11 +32,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Apple"))
+        ICollectable collectable = collision.GetComponent<ICollectable>();  // Verifica se o objeto é coletável
+
+        if (collectable != null)
         {
-            int value = collision.GetComponent<Apple>().Score;
-            GameManager.instance.AddScore(value);
-            Destroy(collision.gameObject);
+            collectable.Collect();  // Chama o método Collect() se for um objeto coletável
         }
     }
 }
+
