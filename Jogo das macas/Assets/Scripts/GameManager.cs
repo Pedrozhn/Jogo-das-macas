@@ -17,12 +17,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height)) + new Vector3(-1,1);
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height)) + new Vector3(-1, 1);
     }
 
     public void AddScore(int value)
     {
-        score+= value;
+        score += value;
         scoreText.text = score.ToString();
     }
 }

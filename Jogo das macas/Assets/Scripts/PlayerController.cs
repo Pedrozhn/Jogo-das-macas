@@ -39,5 +39,9 @@ public class PlayerController : MonoBehaviour
             collectable.Collect();  // Chama o método Collect() se for um objeto coletável
         }
     }
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 32a00762449dc47f5abc8168f08a1649c4410382

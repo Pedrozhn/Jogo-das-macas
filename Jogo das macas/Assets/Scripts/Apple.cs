@@ -5,17 +5,18 @@ using static NewBehaviourScript;
 
 public class Apple : MonoBehaviour, ICollectable
 {
-    const int speed = 5;
     [SerializeField] int score;
-    Rigidbody2D rigidbody2D;
+    protected new Rigidbody2D rigidbody2D;
 
     public int Score { get => score; }
 
-    private void Start()
+    private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.gravityScale = 1f;  // Configura a gravidade padrão para todas as maçãs.
     }
 
+<<<<<<< HEAD
     private void Update()
     {
         rigidbody2D.velocity = Vector2.up * -speed;
@@ -33,6 +34,9 @@ public class Apple : MonoBehaviour, ICollectable
         GameManager.instance.AddScore(score);
         Destroy(gameObject);  // Destruir a maçã após ser coletada
     }
+=======
+    // Não há lógica de movimento ou atualização aqui. A física do Rigidbody2D vai cuidar disso.
+>>>>>>> 32a00762449dc47f5abc8168f08a1649c4410382
 }
 
 //
